@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>infoBubble</title>
+    <style type="text/css">
+        p{
+            margin: 0;
+        padding: 0;;
+        }
+        .warp{
+            width:900px;
+            height:400px;
+            margin: 100px auto 0;
+            background: rgba(204, 204, 204, 0.36);
+        }
+        .methodTitle{
+            width:900px;
+            text-align: center;
+            font-size: 18px;
+            margin: 100px auto 0;
+            padding: 20px 0;
+        }
+        .methodSub{
+            width:900px;
+            text-align: left;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 0 auto;
+            background: #7EDBCF;
+            line-height: 30px;
+            text-indent: 20px;
+            color: #000;
+        }
+        .methodArea{
+            width:900px;
+            text-align: left;
+            font-size: 14px;
+            margin: 0 auto;
+            line-height: 30px;
+            text-indent: 20px;
+            color: #000;
+        }
+       .ye .title{
+           margin-top: 50px;;
+           background:#FB8C00 ;
+           color: #fff;
+           text-indent: 20px;
+           font-size: 16px;
+           padding: 10px 0;
+       }
+        .ye .m_row{
+            border-bottom: 1px solid #FB8C00;
+            min-height: 80px;
+        }
+       .m_2{
+            width:20%;
+           float:left;
+           background: #FEF0DE;
+           min-height: 80px;
+        }
+        .m_8{
+            width:80%;
+            float:left;
+            min-height: 80px;
+        }
+        .dialog{
+            width:200px;
+            height:50px;
+            font-weight: bold;
+            font-size: 16px;
+            color: #FB8C00;
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+<div id="warp" class="warp"></div>
+<div class="methodTitle">MovingMap</div>
+<div class="methodSub">
+    e.g:<br />
+    <p>var googlemap = gmap();</p>
+    <p>googlemap.MovingMap(options);</p>
+    <p>googlemap.onMapLoad = function(){</p>
+    <p>googlemap.setMarker([{</p>
+    <p> 　　position:"39.9388838,116.3974589"</p>
+    <p>　},{</p>
+    <p>　　position:"39.1388838,116.3974589"</p>
+    <p>}])</p>
+    <p>var html = "<div class=\"dialog\">这是个文本描述框</div>";</p>
+    //
+    <p>googlemap.InfoBubble(html);</p>
+    <p>}</p>
+</div>
+<div class="methodArea">
+    <div class="ye">
+        <p class="title">Properties</p>
+        <div class="m_row">
+            <div class="m_2">html</div>
+            <div class="m_8">
+                 <p>type:html Elements</p>
+                required
+            </div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">markArray</div>
+            <div class="m_8">
+                <p>type:[Array]</p>
+                mark Array ,if empty,will use all marks;
+            </div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">fn</div>
+            <div class="m_8">
+                <p>type:function</p>
+                when mark set,you could use this callback function
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+</body>
+</html>
+<script type="text/javascript" src="../google-map-1.0.0.js"></script>
+<script type="text/javascript">
+    var googlemap = gmap();
+    var elem = document.getElementById("warp");
+    googlemap.MovingMap({
+        target:elem
+    });
+    googlemap.onMapLoad = function(){
+        googlemap.setMarker([{
+            position:"39.9388838,116.3974589"
+        },{
+            position:"39.1388838,116.3974589"
+        }])
+        //
+        var html = "<div class=\"dialog\">这是个文本描述框</div>";
+        //
+        googlemap.InfoBubble(html);
+    }
+</script>

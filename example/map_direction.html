@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Create direction</title>
+    <style type="text/css">
+        p{
+            margin: 0;
+        padding: 0;;
+        }
+        .warp{
+            width:900px;
+            height:400px;
+            margin: 100px auto 0;
+            background: rgba(204, 204, 204, 0.36);
+        }
+        .methodTitle{
+            width:900px;
+            text-align: center;
+            font-size: 18px;
+            margin: 100px auto 0;
+            padding: 20px 0;
+        }
+        .methodSub{
+            width:900px;
+            text-align: left;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 0 auto;
+            background: #7EDBCF;
+            line-height: 30px;
+            text-indent: 20px;
+            color: #000;
+        }
+        .methodArea{
+            width:900px;
+            text-align: left;
+            font-size: 14px;
+            margin: 0 auto;
+            line-height: 30px;
+            text-indent: 20px;
+            color: #000;
+        }
+       .ye .title{
+           margin-top: 50px;;
+           background:#FB8C00 ;
+           color: #fff;
+           text-indent: 20px;
+           font-size: 16px;
+           padding: 10px 0;
+       }
+        .ye .m_row{
+            border-bottom: 1px solid #FB8C00;
+            min-height: 80px;
+        }
+       .m_2{
+            width:20%;
+           float:left;
+           background: #FEF0DE;
+           min-height: 80px;
+        }
+        .m_8{
+            width:80%;
+            float:left;
+            min-height: 80px;
+        }
+    </style>
+</head>
+<body>
+<div id="warp" class="warp"></div>
+<div class="methodTitle">MovingMap</div>
+<div class="methodSub">
+    e.g:<br />
+    <p>var googlemap = gmap();</p>
+    <p>googlemap.MovingMap(options);</p>
+    <p>googlemap.onMapLoad = function(){</p>
+    <p>googlemap.setMarker([{</p>
+    <p> 　　position:"39.9388838,116.3974589"</p>
+    <p>　},{</p>
+    <p>　　position:"39.1388838,116.3974589"</p>
+    <p>}])</p>
+    <p>googlemap.Direction();</p>
+    <p>googlemap.setDirection({</p>
+    <p> 　　origin:"39.9388838,116.3974589",//required</p>
+    <p> 　　destination:"39.1388838,116.3974589",//required</p>
+    <p> 　　travelMode:"driving",//required</p>
+    <p> 　　suppressMarkers:true,</p>
+    <p> 　　strokeColor:"#194D7B",</p>
+    <p> 　　success:function(array){</p>
+    <p> 　　}
+    <p>});
+    <p>}</p>
+</div>
+<div class="methodArea">
+    <div class="ye">
+        <p class="title">Properties</p>
+        <div class="m_row">
+            <div class="m_2">origin</div>
+            <div class="m_8">
+                <p>Type:  String [LatLng]</p>
+                The initial Map center. Required.
+            </div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">destination</div>
+            <div class="m_8">
+                <p>Type:  String [LatLng]</p>
+                The initial Map center. Required.
+            </div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">travelMode</div>
+            <div class="m_8">
+                <p>Type:  String [LatLng]</p>
+                driving,walking,bicycling,transit
+            </div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">avoidFerries</div>
+            <div class="m_8">
+                <p>Type:  boolean</p>
+                If true, instructs the Directions service to avoid ferries where possible. Optional.
+            </div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">avoidHighways</div>
+            <div class="m_8">
+                <p>Type:  boolean</p>
+                If true, instructs the Directions service to avoid highways where possible. Optional.
+            </div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">durationInTraffic</div>
+            <div class="m_8">
+                <p>Type:  boolean</p>
+                Whether or not we should provide trip duration based on current traffic conditions. Only available to Maps API for Work customers.
+            </div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">optimizeWaypoints</div>
+            <div class="m_8">
+                <p>Type:  boolean</p>
+                If set to true, the DirectionService will attempt to re-order the supplied intermediate waypoints to minimize overall cost of the route. If waypoints are optimized, inspect DirectionsRoute.waypoint_order in the response to determine the new ordering.
+            </div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">provideRouteAlternatives</div>
+            <div class="m_8">
+                <p>Type:  boolean</p>
+                Whether or not route alternatives should be provided. Optional.
+            </div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">unitSystem</div>
+            <div class="m_8">
+                <p>Type:  UnitSystem</p>
+                Preferred unit system to use when displaying distance. Defaults to the unit system used in the country of origin.
+            </div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">waypoints</div>
+            <div class="m_8">
+                <p>Type:  Array</p>
+                Array of intermediate waypoints. Directions will be calculated from the origin to the destination by way of each waypoint in this array. The maximum allowed waypoints is 8, plus the origin, and destination. Maps API for Work customers are allowed 23 waypoints, plus the origin, and destination. Waypoints are not supported for transit directions. Optional.
+            </div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">suppressMarkers</div>
+            <div class="m_8">
+                <p>Type:  boolean</p>
+                Suppress the rendering of markers.
+            </div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">strokeColor</div>
+            <div class="m_8">
+                <p>Type:  string</p>
+                The stroke color. All CSS3 colors are supported except for extended named colors.
+            </div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">success</div>
+            <div class="m_8">
+                <p>type:function</p>
+                you could use this callback function
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+</body>
+</html>
+<script type="text/javascript" src="../googlemap.js"></script>
+<script type="text/javascript">
+    var googlemap = gmap();
+    var elem = document.getElementById("warp");
+    googlemap.MovingMap({
+        target:elem
+    });
+    googlemap.onMapLoad = function(){
+        googlemap.setMarker([{
+            position:"39.9388838,116.3974589"
+        },{
+            position:"39.1388838,116.3974589"
+        }])
+        googlemap.Direction();
+        googlemap.setDirection({
+            origin:"39.9388838,116.3974589",//required
+            destination:"39.1388838,116.3974589",//required
+            travelMode:"driving",//required
+            suppressMarkers:true,
+            strokeColor:"#194D7B",
+            success:function(array){
+            }
+        });
+    }
+</script>

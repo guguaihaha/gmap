@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>map_theme</title>
+    <style type="text/css">
+        p{
+            margin: 0;
+        padding: 0;;
+        }
+        .warp{
+            width:900px;
+            height:400px;
+            margin: 100px auto 0;
+            background: rgba(204, 204, 204, 0.36);
+        }
+        .methodTitle{
+            width:900px;
+            text-align: center;
+            font-size: 18px;
+            margin: 100px auto 0;
+            padding: 20px 0;
+        }
+        .methodSub{
+            width:900px;
+            text-align: left;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 0 auto;
+            background: #7EDBCF;
+            line-height: 30px;
+            text-indent: 20px;
+            color: #000;
+        }
+        .methodArea{
+            width:900px;
+            text-align: left;
+            font-size: 14px;
+            margin: 0 auto;
+            line-height: 30px;
+            text-indent: 20px;
+            color: #000;
+        }
+       .ye .title{
+           margin-top: 50px;;
+           background:#FB8C00 ;
+           color: #fff;
+           text-indent: 20px;
+           font-size: 16px;
+           padding: 10px 0;
+       }
+        .ye .m_row{
+            border-bottom: 1px solid #FB8C00;
+            min-height: 80px;
+        }
+       .m_2{
+            width:20%;
+           float:left;
+           background: #FEF0DE;
+           min-height: 80px;
+        }
+        .m_8{
+            width:80%;
+            float:left;
+            min-height: 80px;
+        }
+        .clear{
+            clear:both;
+        }
+
+    </style>
+</head>
+<body>
+<div id="warp" class="warp"></div>
+<div class="methodTitle">MovingMap</div>
+<div class="methodSub">
+    e.g:<br />
+    <p>var googlemap = gmap();</p>
+    <p>googlemap.MovingMap(options);</p>
+</div>
+<div class="methodArea">
+    <div class="ye">
+        <p class="title">Properties</p>
+        <div class="m_row">
+            <div class="m_2">target</div>
+            <div class="m_8">
+                Type:  HTML Element[object HTMLElement]<br />
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">center</div>
+            <div class="m_8">
+                <p>Type:  String [LatLng]</p>
+                The initial Map center. Required.
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">zoom</div>
+            <div class="m_8">
+                <p>Type:  number</p>
+                The initial Map zoom level. Required.
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">draggable</div>
+            <div class="m_8">
+                <p>Type:  boolean</p>
+                If false, prevents the map from being dragged. Dragging is enabled by default.
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">draggableCursor</div>
+            <div class="m_8">
+                <p>Type:  string</p>
+                The name or url of the cursor to display when mousing over a draggable map. This property uses the css cursor attribute to change the icon. As with the css property, you must specify at least one fallback cursor that is not a URL. For example: draggableCursor: 'url(http://www.example.com/icon.png), auto;'.
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">keyboardShortcuts</div>
+            <div class="m_8">
+                <p>Type:  boolean</p>
+                If false, prevents the map from being controlled by the keyboard. Keyboard shortcuts are enabled by default.
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">mapMaker</div>
+            <div class="m_8">
+                <p>Type:  boolean</p>
+                True if Map Maker tiles should be used instead of regular tiles.
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">mapTypeId</div>
+            <div class="m_8">
+                <p>Type:  MapTypeId</p>
+                <p>The initial Map mapTypeId. Defaults to ROADMAP.</p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">maxZoom</div>
+            <div class="m_8">
+                <p>Type:  number</p>
+                The maximum zoom level which will be displayed on the map. If omitted, or set to null, the maximum zoom from the current map type is used instead.
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">minZoom</div>
+            <div class="m_8">
+                <p>Type:  number</p>
+                The minimum zoom level which will be displayed on the map. If omitted, or set to null, the minimum zoom from the current map type is used instead.
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">overviewMapControl</div>
+            <div class="m_8">
+                <p>Type:  boolean</p>
+                The enabled/disabled state of the Overview Map control.
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">panControl</div>
+            <div class="m_8">
+                <p>Type:  boolean</p>
+                The enabled/disabled state of the Pan control.
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">rotateControl</div>
+            <div class="m_8">
+                <p>Type:  boolean</p>
+                The enabled/disabled state of the Rotate control.
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">scaleControl</div>
+            <div class="m_8">
+                <p>Type:  boolean</p>
+                The initial enabled/disabled state of the Scale control.
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">scrollwheel</div>
+            <div class="m_8">
+                <p>Type:  boolean</p>
+                If false, disables scrollwheel zooming on the map. The scrollwheel is enabled by default.
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">streetViewControl</div>
+            <div class="m_8">
+                <p>Type:  boolean</p>
+                The initial enabled/disabled state of the Street View Pegman control. This control is part of the default UI, and should be set to false when displaying a map type on which the Street View road overlay should not appear (e.g. a non-Earth map type).
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">styles</div>
+            <div class="m_8">
+                <p>Type:  Array<MapTypeStyle></p>
+                Styles to apply to each of the default map types. Note that for Satellite/Hybrid and Terrain modes, these styles will only apply to labels and geometry.
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">tilt</div>
+            <div class="m_8">
+                <p>Type:  number</p>
+                Controls the automatic switching behavior for the angle of incidence of the map. The only allowed values are 0 and 45. The value 0 causes the map to always use a 0° overhead view regardless of the zoom level and viewport. The value 45 causes the tilt angle to automatically switch to 45 whenever 45° imagery is available for the current zoom level and viewport, and switch back to 0 whenever 45° imagery is not available (this is the default behavior). 45° imagery is only available for SATELLITE and HYBRID map types, within some locations, and at some zoom levels. Note: getTilt returns the current tilt angle, not the value specified by this option. Because getTilt and this option refer to different things, do not bind() the tilt property; doing so may yield unpredictable effects.
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">zoomControl</div>
+            <div class="m_8">
+                <p>Type:  boolean</p>
+                The enabled/disabled state of the Zoom control.
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">success</div>
+            <div class="m_8">
+                <p>Type:  function</p>
+                The map loaded and callback function
+            </div>
+            <div class="clear"></div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>
+<script type="text/javascript" src="../google-map-1.0.0.js"></script>
+<script type="text/javascript">
+    var googlemap = gmap();
+    var elem = document.getElementById("warp");
+    var styles = [
+        {
+            featureType: "road.highway",
+            elementType: "geometry",
+            stylers: [
+                { lightness: 100 },
+                { visibility: "simplified" },
+                {color:"#7edbcf"},
+                {weight:3}
+            ]
+        },{
+            featureType: "road.arterial",
+            elementType: "geometry",
+            stylers: [
+                { lightness: 100 },
+                { visibility: "simplified" },
+                {color:"#ffffff"}
+            ]
+        },
+        {
+            featureType: "road.local",
+            elementType: "all",
+            stylers: [
+                { lightness: 100 },
+                { visibility: "simplified" },
+                {color:"#ffffff"}
+            ]
+        },
+        {
+            featureType: "landscape",
+            elementType: "all",
+            stylers: [
+                {color:"#f3f3f3"}
+            ]
+        },
+        {
+            featureType: "poi.attraction",
+            elementType: "all",
+            stylers: [
+                {color:"#e5e7e9"}
+            ]
+        },{
+            featureType: "poi.park",
+            elementType: "all",
+            stylers: [
+                {color:"#c4e8c1"}
+            ]
+        },
+        {
+            featureType: "transit",
+            elementType: "all",
+            stylers: [
+                {color:"#d3d7db"}
+            ]
+        },
+        {
+            featureType: "water",
+            elementType: "geometry",
+            stylers: [
+                {color:"#c4daff"}
+            ]
+        }
+
+    ];
+    googlemap.MovingMap({
+        target:elem,
+        styles:styles,
+        success:function(){
+        }
+    });
+</script>
