@@ -817,6 +817,9 @@
             };
             var options = options || {};
             options = _gmap.fn.extendMine(defaults,options);
+            if(typeof(options.zoom) == "string"){
+                options.zoom = parseInt(options.zoom);
+            }
             if(options.target.length == 0){
                 throw "the selector element is empty";
                 return false;
