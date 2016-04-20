@@ -174,7 +174,7 @@
          *
          * **/
         var defaults = {
-            url:"http://ditu.google.cn/maps/api/js",
+            url:"http://maps.google.cn/maps/api/js",
             test:false,
             version:"3.exp",
             key:"",
@@ -556,6 +556,7 @@
              * ***/
             var clickShow = true;
             var clickEvent = "click";
+            var clickFn = function(){};
             var defaults = {
             };
             if(options.content){
@@ -579,6 +580,9 @@
             if(options.clickEvent){
                 clickEvent = options.clickEvent;
             }
+            if(options.clickFn){
+                clickFn = options.clickFn;
+            }
 
 
             var infowindow = new google.maps.InfoWindow(defaults);
@@ -586,6 +590,7 @@
                 infowindow.open(that.moveOptions.mapName,options.marker);
             }else{
                 options.marker.addListener(clickEvent,function(){
+                    clickFn.call(options.marker,that.moveOptions.mapName);
                     infowindow.open(that.moveOptions.mapName,options.marker);
                 },false)
             }
@@ -782,6 +787,9 @@
             _this.moveOptions.polylinesName = flightPath;
             return flightPath;
         }
+        this.getPolyLines = function(){
+            return this.moveOptions.polylinesName;
+        }
         this.clearPolylines = function(){
             if(this.moveOptions.polylinesName){
                 this.moveOptions.polylinesName.setMap(null);
@@ -789,6 +797,127 @@
             }
         }
         //
+        this.print = function(elem,title){
+            var _this = this;
+            if("html2canvas" in window){
+                printDitu(elem,title);
+            }else{
+                var re = googleMap();
+                var src = baseUrl + "plugin/html2canvas/build/html2canvas.js";
+                re.requirePlugin(src,function(){
+                    printDitu(elem,title);
+                });
+
+            }
+            function printDitu(element,title){
+                var element = element || _this.moveOptions.options.target;
+                var title = title || "打印地图"
+                if(!element){
+                    return false;
+                }
+                //
+                var newWindow = window.open();
+                newWindow.document.write("<html><head><title>title</title>");
+                var links = document.querySelectorAll("link");
+                for(var i = 0;i<links.length;i++){
+                    if(links[i].getAttribute("rel") == "stylesheet"){
+                        newWindow.document.write(links[i].outerHTML);
+                    }
+                }
+
+                newWindow.document.write("<style>@media print{@page{size:landscape}*{box-shadow:none!important;}}</style></head><body><div id=\"mapWarp\"></div></body></html>");
+                var $body = newWindow.document.body,
+                    $warpMap = newWindow.document.querySelector("#mapWarp");
+                $warpMap.style.width = element.offsetWidth;
+                $warpMap.style.height = element.offsetHeight;
+                //
+
+                html2canvas(element, {
+                    useCORS: true,
+                    onrendered: function(canvas) {
+                        //console.log(canvas.toDataURL("image/png"));
+                        $warpMap.innerHTML = "<img src=\""+ canvas.toDataURL("image/png")+"\" />";
+                        newWindow.print();
+                        newWindow.close();
+                    }
+                });
+                //html2canvas(element).then(function(canvas) {
+                //    $warpMap.appendChild(canvas);
+                //    newWindow.print();
+                //    newWindow.close();
+                //});
+
+            }
+        }
+        this.dymPrint = function(elem){
+            var _this = this;
+            var $content = this.moveOptions.options.target;
+            var newWindow = window.open();
+            newWindow.document.write("<html><head><title>Map</title>");
+            var links = document.querySelectorAll("link");
+            for(var i = 0;i<links.length;i++){
+                if(links[i].getAttribute("rel") == "stylesheet"){
+                    newWindow.document.write(links[i].outerHTML);
+                }
+            }
+
+            newWindow.document.write("<style>@media print{@page{size:landscape}*{box-shadow:none!important;}}</style></head><body><div id=\"mapWarp\"></div></body></html>");
+            var $body = newWindow.document.body,
+                $warpMap = newWindow.document.querySelector("#mapWarp");
+            $warpMap.style.width = $content.offsetWidth;
+            $warpMap.style.height = $content.offsetHeight;
+            //
+            var mapname = this.getMap();
+            var center =this.getCenter();
+            var pmap = gmap({
+                target              : $warpMap,
+                zoom			    : mapname.getZoom(),
+                center			    : center,
+                mapTypeId		    : mapname.getMapTypeId(),
+                mapTypeControl	    : false,
+                zoomControl         : false,
+                scaleControl        : false,
+                panControl          : false,
+                overviewMapControl  : false,
+                streetViewControl   : false,
+                scrollwheel         : false,
+                success:function(){
+                    var markers = _this.getMarker();
+                    var infoBubbles = _this.getInfoBubble();
+                    var polyLines = _this.getPolyLines();
+                    var infos = _this.getInfo();
+                    var directionDisplay = this.getDirectionDisplay();
+                    if(markers.length>0){
+                        markers.forEach(function(marker){
+                            marker.setMap(pmap.getMap())
+                        })
+                    }
+                    //
+                    if(infoBubbles.length>0){
+                        infoBubbles.forEach(function(infoBubble){
+                            infoBubble["infoBubble"].open(pmap.getMap(),infoBubble["marker"]);
+                        })
+                    }
+                    //
+                    if(polyLines){
+                        polyLines.setMap(pmap.getMap())
+                    }
+                    //
+                    if(infos.length>0){
+                        infos.forEach(function(info){
+                            info["infoWindow"].open(pmap.getMap(),info["marker"]);
+                        })
+                    }
+                    //
+                    if(directionDisplay){
+                        var result =directionDisplay.getDirections();
+                        directionDisplay.setMap(pmap.getMap());
+                        directionDisplay.setDirections(result);
+                    }
+                    //
+                }
+            })
+        }
         return this;
     }
    /*google map common methods*/
@@ -866,7 +995,7 @@
     //google map request
     function googleMap(options){
         var defaults = {
-            url:"http://ditu.google.cn/maps/api/js",
+            url:"http://maps.google.cn/maps/api/js",
             test:false,
             version:"3.exp",
             key:"",
