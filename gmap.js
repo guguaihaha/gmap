@@ -838,7 +838,10 @@
                         //console.log(canvas.toDataURL("image/png"));
                         $warpMap.innerHTML = "<img src=\""+ canvas.toDataURL("image/png")+"\" />";
                         newWindow.print();
-                        newWindow.close();
+                        setTimeout(function(){
+                            //延迟关闭,因为safari一些浏览器无法即使渲染无法预览的问题
+                            newWindow.close();
+                        },1000)
                     }
                 });
                 //html2canvas(element).then(function(canvas) {
