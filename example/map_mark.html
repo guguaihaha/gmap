@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Create marks</title>
+    <title>Create markers</title>
     <style type="text/css">
         p{
             margin: 0;
-        padding: 0;;
+            padding: 0;;
         }
         .warp{
             width:900px;
@@ -41,28 +41,30 @@
             text-indent: 20px;
             color: #000;
         }
-       .ye .title{
-           margin-top: 50px;;
-           background:#FB8C00 ;
-           color: #fff;
-           text-indent: 20px;
-           font-size: 16px;
-           padding: 10px 0;
-       }
+        .ye .title{
+            margin-top: 50px;;
+            background:#FB8C00 ;
+            color: #fff;
+            text-indent: 20px;
+            font-size: 16px;
+            padding: 10px 0;
+        }
         .ye .m_row{
             border-bottom: 1px solid #FB8C00;
             min-height: 80px;
         }
-       .m_2{
+        .m_2{
             width:20%;
-           float:left;
-           background: #FEF0DE;
-           min-height: 80px;
+            float:left;
+            background: #FEF0DE;
+            min-height: 80px;
         }
         .m_8{
-            width:80%;
+            width:79%;
             float:left;
             min-height: 80px;
+            line-height: 25px;
+            padding-left: 1%;
         }
         .clear{
             clear:both;
@@ -71,18 +73,23 @@
 </head>
 <body>
 <div id="warp" class="warp"></div>
-<div class="methodTitle">MovingMap</div>
+<div class="methodTitle">创建所有坐标</div>
 <div class="methodSub">
     e.g:<br />
-    <p>var googlemap = gmap();</p>
-    <p>googlemap.MovingMap(options);</p>
-    <p>googlemap.onMapLoad = function(){</p>
-    <p>googlemap.setMarker([{</p>
-    <p> 　　position:"39.9388838,116.3974589"</p>
-    <p>　},{</p>
-    <p>　　position:"39.1388838,116.3974589"</p>
+    <p>var elem = document.getElementById("warp");</p>
+    <p>var mapname = new gmap({</p>
+    <p>target:elem,</p>
+    <p>center:"45,45",</p>
+    <p>zoom:7</p>
+    <p>});</p>
+    <p>mapname.onMapLoad = function(){</p>
+    <p>mapname.setMarker([{</p>
+    <p>position:"45,45"</p>
     <p>}])</p>
     <p>}</p>
+    <p>--------------------</p>
+    <p>mapname.setMarker(arrayProperties)</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;arrayProperties:[Properties,Properties]</p>
 </div>
 <div class="methodArea">
     <div class="ye">
@@ -91,15 +98,19 @@
             <div class="m_2">position</div>
             <div class="m_8">
                 <p>Type:  String [LatLng]</p>
-                The initial Map center. Required.
+                <p>中心点,此选项必填;e.g:"23.34344,22,494948"</p>
             </div>
             <div class="clear"></div>
         </div>
         <div class="m_row">
-            <div class="m_2">icon</div>
+            <div class="m_2" style="height:160px;">icon</div>
             <div class="m_8">
-                <p>Type:  string|Icon|Symbol</p>
-                Icon for the foreground. If a string is provided, it is treated as though it were an Icon with the string as url.
+                <p>Type:  object</p>
+                <p>此对象包含4个对象</p>
+                <p>url:icon的url地址;</p>
+                <p>size:new google.maps.Size(20, 32);</p>
+                <p>origin:new google.maps.Point(0, 0);</p>
+                <p>anchor:new google.maps.Point(0, 32);</p>
             </div>
             <div class="clear"></div>
         </div>
@@ -107,7 +118,7 @@
             <div class="m_2">shape</div>
             <div class="m_8">
                 <p>Type:  MarkerShape</p>
-                Image map region definition used for drag/click.
+                <p>图像映射区域定义用于拖动/点击。</p>
             </div>
             <div class="clear"></div>
         </div>
@@ -115,7 +126,7 @@
             <div class="m_2">title</div>
             <div class="m_8">
                 <p>Type:  string</p>
-                Rollover text
+                <p>标题</p>
             </div>
             <div class="clear"></div>
         </div>
@@ -123,7 +134,7 @@
             <div class="m_2">zIndex</div>
             <div class="m_8">
                 <p>Type:  number</p>
-                All markers are displayed on the map in order of their zIndex, with higher values displaying in front of markers with lower values. By default, markers are displayed according to their vertical position on screen, with lower markers appearing in front of markers further up the screen.
+                <p>所有标记在地图上显示的顺序zIndex,较高的值显示在前面的标记值较低。默认情况下,根据其垂直位置标记显示在屏幕上,较低的标志出现在面前的标记在屏幕上。</p>
             </div>
             <div class="clear"></div>
         </div>
@@ -131,7 +142,7 @@
             <div class="m_2">draggable</div>
             <div class="m_8">
                 <p>Type:  boolean</p>
-                If true, the marker can be dragged. Default value is false.
+                <p>是否允许标点被拖拽,数值:"true,false";默认是true</p>
             </div>
             <div class="clear"></div>
         </div>
@@ -139,7 +150,7 @@
             <div class="m_2">clickable</div>
             <div class="m_8">
                 <p>Type:  boolean</p>
-                If true, the marker receives mouse and touch events. Default value is true.
+                <p>是否允许标点被点击,数值:"true,false";默认是true</p>
             </div>
             <div class="clear"></div>
         </div>
@@ -147,7 +158,7 @@
             <div class="m_2">cursor</div>
             <div class="m_8">
                <p> Type:  string</p>
-                Mouse cursor to show on hover
+                <p>鼠标悬停的样式,可以自定义url或者"auto".</p>
             </div>
             <div class="clear"></div>
         </div>
@@ -159,14 +170,15 @@
             <div class="m_2">removeMarker</div>
             <div class="m_8">
                 <p>Type:  Array[Object]</p>
-                return none;
+                <p>return none;</p>
+                <p>移除传入的marker对象,如果marker对象没有传入参数,则删除地图上所有坐标点</p>
             </div>
             <div class="clear"></div>
         </div>
         <div class="m_row">
             <div class="m_2">getMarker</div>
             <div class="m_8">
-                return all markerArray
+                <p>返回地图上marker数组对象</p>
             </div>
             <div class="clear"></div>
         </div>
@@ -177,18 +189,17 @@
 </div>
 </body>
 </html>
-<script type="text/javascript" src="../google-map-1.0.0.js"></script>
+<script type="text/javascript" src="../gmap.js"></script>
 <script type="text/javascript">
-    var googlemap = gmap();
     var elem = document.getElementById("warp");
-    googlemap.MovingMap({
-        target:elem
+    var mapname = new gmap({
+        target:elem,
+        center:"45,45",
+        zoom:7
     });
-    googlemap.onMapLoad = function(){
-        googlemap.setMarker([{
-            position:"39.9388838,116.3974589"
-        },{
-            position:"39.1388838,116.3974589"
+    mapname.onMapLoad = function(){
+        mapname.setMarker([{
+            position:"45,45"
         }])
     }
 </script>
