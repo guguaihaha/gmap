@@ -90,14 +90,15 @@
 <div class="methodTitle">autoSearch</div>
 <div class="methodSub">
     e.g:<br />
-    <p>var googlemap = gmap();</p>
-    <p>googlemap.MovingMap(options);</p>
-    <p>googlemap.onMapLoad = function(){</p>
-    <p>googlemap.setMarker([{</p>
-    <p> 　　position:"39.9388838,116.3974589"</p>
-    <p>　}])</p>
-    <p>var elem_2 = document.getElementById("autoSearchInput");</p>
-    <p>googlemap.autoSearch(elem_2);</p>
+    <p>var elem = document.getElementById("autoSearchInput");</p>
+    <p>var target = document.getElementById("warp");</p>
+    <p>var mapname = new gmap({</p>
+    <p>target:target,</p>
+    <p>center:"45,45",</p>
+    <p>zoom:7</p>
+    <p>});</p>
+    <p>mapname.onMapLoad = function(){</p>
+    <p>mapname.autoSearch(elem);</p>
     <p>}</p>
 </div>
 <div class="methodArea">
@@ -114,19 +115,16 @@
 </div>
 </body>
 </html>
-<script type="text/javascript" src="../google-map-1.0.0.js"></script>
+<script type="text/javascript" src="../gmap.js"></script>
 <script type="text/javascript">
-    var googlemap = gmap();
-    var elem = document.getElementById("warp");
-    googlemap.MovingMap({
-        target:elem
+    var elem = document.getElementById("autoSearchInput");
+    var target = document.getElementById("warp");
+    var mapname = new gmap({
+        target:target,
+        center:"45,45",
+        zoom:7
     });
-    googlemap.onMapLoad = function(){
-        googlemap.setMarker([{
-            position:"39.9388838,116.3974589"
-        }])
-        //
-        var elem_2 = document.getElementById("autoSearchInput");
-        googlemap.autoSearch(elem_2);
+    mapname.onMapLoad = function(){
+        mapname.autoSearch(elem);
     }
 </script>
