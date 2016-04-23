@@ -71,72 +71,80 @@
 </head>
 <body>
 <div id="warp" class="warp"></div>
-<div class="methodTitle">MovingMap</div>
-
+<div class="methodTitle">polylines</div>
+<div class="methodSub">
+    e.g:<br />
+    <p>var elem = document.getElementById("warp");</p>
+    <p>var mapname =  new gmap({</p>
+    <p>target:elem,</p>
+    <p>center:"39.9388838,116.3974589",//default in beijing</p>
+    <p>zoom:7</p>
+    <p>});</p>
+    <p>mapname.onMapLoad = function(){</p>
+    <p>//划线</p>
+    <p> mapname.polylines({</p>
+    <p>path: ["39.9388838,116.3974589","40.9388838,117.3974589","40.9338838,115.39712389"],</p>
+    <p>strokeColor: '#FF0000',</p>
+    <p>strokeWeight: 3</p>
+    <p>})</p>
+    <p>//标点</p>
+    <p>mapname.setMarker([{</p>
+    <p> position:"39.9388838,116.3974589"</p>
+    <p>},{</p>
+    <p>position:"40.9388838,117.3974589"</p>
+    <p>},{</p>
+    <p>position:"40.9338838,115.39712389"</p>
+    <p>}])</p>
+    <p> }</p>
+</div>
 <div class="methodArea">
     <div class="ye">
         <p class="title">Properties</p>
         <div class="m_row">
-            <div class="m_2">position</div>
+            <div class="m_2">path</div>
             <div class="m_8">
-                <p>Type:  String [LatLng]</p>
+                <p>Type:  Array [stringLaglnt]</p>
                 The initial Map center. Required.
             </div>
             <div class="clear"></div>
         </div>
         <div class="m_row">
-            <div class="m_2">icon</div>
+            <div class="m_2">geodesic</div>
             <div class="m_8">
-                <p>Type:  string|Icon|Symbol</p>
-                Icon for the foreground. If a string is provided, it is treated as though it were an Icon with the string as url.
+                <p>Type:  boolean</p>
+                是否开启
             </div>
             <div class="clear"></div>
         </div>
         <div class="m_row">
-            <div class="m_2">shape</div>
+            <div class="m_2">strokeColor</div>
             <div class="m_8">
-                <p>Type:  MarkerShape</p>
-                Image map region definition used for drag/click.
+                <p>Type:  RGB</p>
+                线颜色支持css3颜色
             </div>
             <div class="clear"></div>
         </div>
         <div class="m_row">
-            <div class="m_2">title</div>
-            <div class="m_8">
-                <p>Type:  string</p>
-                Rollover text
-            </div>
-            <div class="clear"></div>
-        </div>
-        <div class="m_row">
-            <div class="m_2">zIndex</div>
+            <div class="m_2">strokeOpacity</div>
             <div class="m_8">
                 <p>Type:  number</p>
-                All markers are displayed on the map in order of their zIndex, with higher values displaying in front of markers with lower values. By default, markers are displayed according to their vertical position on screen, with lower markers appearing in front of markers further up the screen.
+                0~1
             </div>
             <div class="clear"></div>
         </div>
         <div class="m_row">
-            <div class="m_2">draggable</div>
+            <div class="m_2">strokeWeight</div>
             <div class="m_8">
-                <p>Type:  boolean</p>
-                If true, the marker can be dragged. Default value is false.
+                <p>Type:  number</p>
+                线粗度
             </div>
             <div class="clear"></div>
         </div>
         <div class="m_row">
-            <div class="m_2">clickable</div>
+            <div class="m_2">map</div>
             <div class="m_8">
-                <p>Type:  boolean</p>
-                If true, the marker receives mouse and touch events. Default value is true.
-            </div>
-            <div class="clear"></div>
-        </div>
-        <div class="m_row">
-            <div class="m_2">cursor</div>
-            <div class="m_8">
-               <p> Type:  string</p>
-                Mouse cursor to show on hover
+                <p>Type:  mapObject</p>
+                地图名称(不填写默认当前)
             </div>
             <div class="clear"></div>
         </div>
@@ -145,17 +153,17 @@
     <div class="ye">
         <p class="title">Method</p>
         <div class="m_row">
-            <div class="m_2">removeMarker</div>
+            <div class="m_2">getPolyLines</div>
             <div class="m_8">
-                <p>Type:  Array[Object]</p>
-                return none;
+                <p>Type: object</p>
+
             </div>
             <div class="clear"></div>
         </div>
         <div class="m_row">
-            <div class="m_2">getMarker</div>
+            <div class="m_2">clearPolylines</div>
             <div class="m_8">
-                return all markerArray
+                移除划线
             </div>
             <div class="clear"></div>
         </div>
@@ -166,23 +174,23 @@
 </div>
 </body>
 </html>
-<script type="text/javascript" src="../google-map-1.0.0.js"></script>
+<script type="text/javascript" src="../gmap.js"></script>
 <script type="text/javascript">
     var elem = document.getElementById("warp");
-    var googlemap = gmap({
+    var mapname =  new gmap({
         target:elem,
         center:"39.9388838,116.3974589",//default in beijing
         zoom:7
     });
-    googlemap.onMapLoad = function(){
+    mapname.onMapLoad = function(){
         //划线
-        googlemap.polylines({
+        mapname.polylines({
             path: ["39.9388838,116.3974589","40.9388838,117.3974589","40.9338838,115.39712389"],
             strokeColor: '#FF0000',
             strokeWeight: 3
         })
         //标点
-        googlemap.setMarker([{
+        mapname.setMarker([{
             position:"39.9388838,116.3974589"
         },{
             position:"40.9388838,117.3974589"
