@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>infoBubble</title>
+    <title>info</title>
     <style type="text/css">
         p{
             margin: 0;
@@ -73,7 +73,7 @@
 </head>
 <body>
 <div id="warp" class="warp"></div>
-<div class="methodTitle">infoBubble</div>
+<div class="methodTitle">info</div>
 <div class="methodSub">
     e.g:<br />
     <p>var elem = document.getElementById("warp");</p>
@@ -90,34 +90,78 @@
     <p>position:"39.1388838,116.3974589"</p>
     <p>}])</p>
     <p>//</p>
-    <p>var html = "<div class=\"dialog\">这是个文本描述框</div>";</p>
+    <p>var html = "&lt;div class=\"dialog\"&gt;这是个文本描述框&lt;/div&gt;";</p>
     <p>//</p>
-    <p>mapname.infoBubble(html,markerArray,function(){</p>
-    <p>//每个info添加后要做点什么...?</p>
+    <p>markerArray.forEach(function(markObject){</p>
+    <p>mapname.setInfo({</p>
+    <p>content:html,</p>
+    <p>marker:markObject</p>
     <p>})</p>
-    <p>}</p>
+    <p>});</p>
 </div>
 <div class="methodArea">
     <div class="ye">
         <p class="title">Properties</p>
         <div class="m_row">
-            <div class="m_2">html</div>
+            <div class="m_2">content</div>
             <div class="m_8">
                  <p>type:html Elements</p>
                 required,将要展示的节点内容
             </div>
         </div>
         <div class="m_row">
-            <div class="m_2">markArray</div>
+            <div class="m_2">maxWidth</div>
             <div class="m_8">
-                <p>type:[Array]</p>
-                针对哪些节点做这些修改,如果为空则使用地图全部mark对象
+                <p>type:number</p>
+                显示框的最大宽度
             </div>
         </div>
         <div class="m_row">
-            <div class="m_2">fn</div>
+            <div class="m_2">pixelOffset</div>
             <div class="m_8">
-                <p>type:function</p>
+                <p>type:number</p>
+
+            </div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">position</div>
+            <div class="m_8">
+                <p>type:number</p>
+                显示框的位置
+            </div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">zIndex</div>
+            <div class="m_8">
+                <p>type:number</p>
+                显示框的叠加层数
+            </div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">marker</div>
+            <div class="m_8">
+                <p>type:object</p>
+                将在哪个marker对象出现显示层
+            </div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">clickShow</div>
+            <div class="m_8">
+                <p>type:boolean</p>
+                是否调用事件去显示浮层
+            </div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">clickEvent</div>
+            <div class="m_8">
+                <p>type:string</p>
+                事件名称"click"
+            </div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">success</div>
+            <div class="m_8">
+                <p>type:</p>
                 当每个mark创建完info会触发一次改行为
             </div>
         </div>
@@ -128,26 +172,7 @@
     <div class="ye">
         <p class="title">Method</p>
         <div class="m_row">
-            <div class="m_2" style="height:350px;">setInfoBubble(properties)</div>
-            <div class="m_8">
-                <p>Type:  object</p>
-                <p>return info;</p>
-                <p>此方法直接调用mapname.setInfoBubble(properties)即可</p>
-                <p><b>Properties</b></p>
-                <p>html:"",//required</p>
-                <p>mark:{},//required</p>
-                <p>arrowStyle:3,</p>
-                <p>borderRadius:0,</p>
-                <p>borderWidth:1,</p>
-                <p>borderColor:"#000000",</p>
-                <p>padding:0,</p>
-                <p>arrowPosition:30,</p>
-                <p>success:function(){}</p>
-            </div>
-            <div class="clear"></div>
-        </div>
-        <div class="m_row">
-            <div class="m_2">getInfoBubble</div>
+            <div class="m_2">getInfo</div>
             <div class="m_8">
                 <p>return Array;</p>
                 <p>返回地图上当前info数组对象</p>
@@ -155,9 +180,9 @@
             <div class="clear"></div>
         </div>
         <div class="m_row">
-            <div class="m_2">removeInfoBubble(infoObject)</div>
+            <div class="m_2">removeInfo(infoObject)</div>
             <div class="m_8">
-                <p>移除对应的info对象;mapname.removeInfoBubble(infoObject);如果infoObject为空则移除当前所有info对象</p>
+                <p>移除对应的info对象;mapname.removeInfo(infoObject);如果infoObject为空则移除当前所有info对象</p>
             </div>
             <div class="clear"></div>
         </div>
@@ -186,8 +211,12 @@
         //
         var html = "<div class=\"dialog\">这是个文本描述框</div>";
         //
-        mapname.infoBubble(html,markerArray,function(){
-            //每个info添加后要做点什么...?
-        })
+        markerArray.forEach(function(markObject){
+          mapname.setInfo({
+              content:html,
+              marker:markObject
+          })
+        });
+
     }
 </script>
