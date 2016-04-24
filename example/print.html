@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>map</title>
+    <style type="text/css">
+        p{
+            margin: 0;
+            padding: 0;;
+        }
+        .warp{
+            width:900px;
+            height:400px;
+            margin: 100px auto 0;
+            background: rgba(204, 204, 204, 0.36);
+        }
+        .methodTitle{
+            width:900px;
+            text-align: center;
+            font-size: 18px;
+            margin: 100px auto 0;
+            padding: 20px 0;
+        }
+        .methodSub{
+            width:900px;
+            text-align: left;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 0 auto;
+            background: #7EDBCF;
+            line-height: 30px;
+            text-indent: 20px;
+            color: #000;
+        }
+        .methodArea{
+            width:900px;
+            text-align: left;
+            font-size: 14px;
+            margin: 0 auto;
+            line-height: 30px;
+            text-indent: 20px;
+            color: #000;
+        }
+        .ye .title{
+            margin-top: 50px;;
+            background:#FB8C00 ;
+            color: #fff;
+            text-indent: 20px;
+            font-size: 16px;
+            padding: 10px 0;
+        }
+        .ye .m_row{
+            border-bottom: 1px solid #FB8C00;
+            min-height: 80px;
+        }
+        .m_2{
+            width:20%;
+            float:left;
+            background: #FEF0DE;
+            min-height: 80px;
+        }
+        .m_8{
+            width:79%;
+            float:left;
+            min-height: 80px;
+            line-height: 25px;
+            padding-left: 1%;
+        }
+        .clear{
+            clear:both;
+        }
+    </style>
+</head>
+<body>
+<input class="print" value="打印地图" type="button" />
+<div id="warp" class="warp"></div>
+<div class="methodTitle">打印地图</div>
+<div class="methodSub">
+    e.g:<br />
+    <p>var elem = document.getElementById("warp");</p>
+    <p>var mapname = new gmap({</p>
+    <p>target:elem,</p>
+    <p>center:"45,45",</p>
+    <p>zoom:7</p>
+    <p>});</p>
+    <p>var button = document.querySelector(".print");</p>
+    <p>if(button){</p>
+    <p>button.addEventListener("click",function(){</p>
+    <p>mapname.print(elem,"打印地图");</p>
+    <p>},false)</p>
+    <p>}</p>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="../gmap.js"></script>
+<script type="text/javascript">
+    var elem = document.getElementById("warp");
+    var mapname = new gmap({
+        target:elem,
+        center:"45,45",
+        zoom:7
+    });
+    var button = document.querySelector(".print");
+    if(button){
+        button.addEventListener("click",function(){
+            mapname.print(elem,"打印地图");
+        },false)
+    }
+
+</script>

@@ -27,6 +27,10 @@
             mapFnName:"gmap_182731927391",
             mapMarkerArray:"gmap_38373619382"
         },
+        con = [
+        "plugin/infobubble.js",
+        "plugin/html2canvas/build/html2canvas.js"
+        ],
     //regex
         reg = /^(?:#([\w\-]+)|(\w+)|\.([\w\-]+))$/;
     //method prototype test
@@ -36,6 +40,8 @@
             return this;
         }
     }
+    //
+    //
    var _gmap = {
        fn:{
            cache:{},
@@ -993,6 +999,12 @@
         }
     }
    /**/
+    //
+    _gmap.fn.each(con,function(m,q){
+        var src = baseUrl + q;
+        required(src,function(){});
+    })
+    //
     var loadFirst = false;
     var loadEvent = [];
     //google map request
@@ -1057,29 +1069,33 @@
                 loadFirst = true;
             },
             requirePlugin:function(src,fn){
-                var eldom = document.createElement("script");
-                eldom.type = "text/javascript";
-                eldom.loaded = false;
-                eldom.src = src;
-                //
-                eldom.onload = function(){
-                    eldom.loaded = true;
-                    fn.call(this);
-                    eldom.onload = eldom.onreadystatechange = null;
-                }
-                eldom.onreadystatechange = function(){
-                    if((eldom.readyState === "loaded" || eldom.readyState === "complete")&&!eldom.loaded){
-                        fn.call(this);
-                        eldom.onload = eldom.onreadystatechange = null;
-                    }
-                }
-                document.getElementsByTagName("head")[0].appendChild(eldom);
+                required(src,fn);
             },
             register:function(){
 
             }
 
         }
+    }
+    //
+    function required(src,fn){
+        var eldom = document.createElement("script");
+        eldom.type = "text/javascript";
+        eldom.loaded = false;
+        eldom.src = src;
+        //
+        eldom.onload = function(){
+            eldom.loaded = true;
+            fn.call(this);
+            eldom.onload = eldom.onreadystatechange = null;
+        }
+        eldom.onreadystatechange = function(){
+            if((eldom.readyState === "loaded" || eldom.readyState === "complete")&&!eldom.loaded){
+                fn.call(this);
+                eldom.onload = eldom.onreadystatechange = null;
+            }
+        }
+        document.getElementsByTagName("head")[0].appendChild(eldom);
     }
     //
     window.gmap = gmap;

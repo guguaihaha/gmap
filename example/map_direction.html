@@ -6,7 +6,7 @@
     <style type="text/css">
         p{
             margin: 0;
-        padding: 0;;
+            padding: 0;;
         }
         .warp{
             width:900px;
@@ -41,55 +41,75 @@
             text-indent: 20px;
             color: #000;
         }
-       .ye .title{
-           margin-top: 50px;;
-           background:#FB8C00 ;
-           color: #fff;
-           text-indent: 20px;
-           font-size: 16px;
-           padding: 10px 0;
-       }
+        .ye .title{
+            margin-top: 50px;;
+            background:#FB8C00 ;
+            color: #fff;
+            text-indent: 20px;
+            font-size: 16px;
+            padding: 10px 0;
+        }
         .ye .m_row{
             border-bottom: 1px solid #FB8C00;
             min-height: 80px;
         }
-       .m_2{
+        .m_2{
             width:20%;
-           float:left;
-           background: #FEF0DE;
-           min-height: 80px;
+            float:left;
+            background: #FEF0DE;
+            min-height: 80px;
         }
         .m_8{
-            width:80%;
+            width:79%;
             float:left;
             min-height: 80px;
+            line-height: 25px;
+            padding-left: 1%;
+        }
+        .clear{
+            clear:both;
         }
     </style>
 </head>
 <body>
 <div id="warp" class="warp"></div>
-<div class="methodTitle">MovingMap</div>
+<div class="methodTitle">direction</div>
 <div class="methodSub">
     e.g:<br />
-    <p>var googlemap = gmap();</p>
-    <p>googlemap.MovingMap(options);</p>
-    <p>googlemap.onMapLoad = function(){</p>
-    <p>googlemap.setMarker([{</p>
-    <p> 　　position:"39.9388838,116.3974589"</p>
-    <p>　},{</p>
-    <p>　　position:"39.1388838,116.3974589"</p>
+    <p>var elem = document.getElementById("warp");</p>
+    <p>var mapname = new gmap({</p>
+    <p>target:elem,</p>
+    <p>center:"39.9388838,116.3974589",</p>
+    <p>zoom:12</p>
+    <p>});</p>
+    <p>mapname.onMapLoad = function(){</p>
+    <p>mapname.setMarker([{</p>
+    <p>position:"39.9388838,116.3974589"</p>
+    <p>},{</p>
+    <p>position:"39.1388838,116.3974589"</p>
     <p>}])</p>
-    <p>googlemap.Direction();</p>
-    <p>googlemap.setDirection({</p>
-    <p> 　　origin:"39.9388838,116.3974589",//required</p>
-    <p> 　　destination:"39.1388838,116.3974589",//required</p>
-    <p> 　　travelMode:"driving",//required</p>
-    <p> 　　suppressMarkers:true,</p>
-    <p> 　　strokeColor:"#194D7B",</p>
-    <p> 　　success:function(array){</p>
-    <p> 　　}
-    <p>});
-    <p>}</p>
+    <p>mapname.direction({</p>
+    <p>origin:"39.9388838,116.3974589",//required</p>
+    <p>destination:"39.1388838,116.3974589",//required</p>
+    <p>travelMode:"driving",//required</p>
+    <p>suppressMarkers:true,</p>
+    <p>strokeColor:"#194D7B",</p>
+    <p>success:function(array){</p>
+    <p>array.each(function(n){</p>
+    <p>//每个n是个对象</p>
+    <p>/**</p>
+    <p>* {</p>
+    <p>duration:&lt;string&gt;,</p>
+    <p>distance:&lt;string&gt;,</p>
+    <p>    step:&lt;array&gt;,</p>
+    <p>        route:&lt;object&gt;,</p>
+    <p>            type:&lt;string&gt;</p>
+    <p>                * }</p>
+    <p>                * **/</p>
+    <p>                })</p>
+    <p>                }</p>
+    <p>                });</p>
+    <p>                }</p>
 </div>
 <div class="methodArea">
     <div class="ye">
@@ -98,121 +118,170 @@
             <div class="m_2">origin</div>
             <div class="m_8">
                 <p>Type:  String [LatLng]</p>
-                The initial Map center. Required.
+                起点. Required.
             </div>
         </div>
         <div class="m_row">
             <div class="m_2">destination</div>
             <div class="m_8">
                 <p>Type:  String [LatLng]</p>
-                The initial Map center. Required.
+                到达终点. Required.
             </div>
         </div>
         <div class="m_row">
             <div class="m_2">travelMode</div>
             <div class="m_8">
                 <p>Type:  String [LatLng]</p>
-                driving,walking,bicycling,transit
+                使用那种交通方式?driving,walking,bicycling,transit
             </div>
         </div>
         <div class="m_row">
             <div class="m_2">avoidFerries</div>
             <div class="m_8">
                 <p>Type:  boolean</p>
-                If true, instructs the Directions service to avoid ferries where possible. Optional.
+                如果设置为真,则避免使用独轮(可选)
             </div>
         </div>
         <div class="m_row">
             <div class="m_2">avoidHighways</div>
             <div class="m_8">
                 <p>Type:  boolean</p>
-                If true, instructs the Directions service to avoid highways where possible. Optional.
+                如果为真,则避免使用高铁(可选)
             </div>
         </div>
         <div class="m_row">
             <div class="m_2">durationInTraffic</div>
             <div class="m_8">
                 <p>Type:  boolean</p>
-                Whether or not we should provide trip duration based on current traffic conditions. Only available to Maps API for Work customers.
+                次选项开启后实施提供交通路况,只能针对支持地图设备使用(可选)
             </div>
         </div>
         <div class="m_row">
             <div class="m_2">optimizeWaypoints</div>
             <div class="m_8">
                 <p>Type:  boolean</p>
-                If set to true, the DirectionService will attempt to re-order the supplied intermediate waypoints to minimize overall cost of the route. If waypoints are optimized, inspect DirectionsRoute.waypoint_order in the response to determine the new ordering.
+                开启可选经过点(可选)
             </div>
         </div>
         <div class="m_row">
             <div class="m_2">provideRouteAlternatives</div>
             <div class="m_8">
                 <p>Type:  boolean</p>
-                Whether or not route alternatives should be provided. Optional.
+                是否提供路由选择(可选)
             </div>
         </div>
-        <div class="m_row">
-            <div class="m_2">unitSystem</div>
+        <div class="m_row" style="height:150px">
+            <div class="m_2" style="height:150px">unitSystem</div>
             <div class="m_8">
                 <p>Type:  UnitSystem</p>
-                Preferred unit system to use when displaying distance. Defaults to the unit system used in the country of origin.
+                返回距离使用单位,目前是"KM"(可选)
+                目前2中方式:<br />
+                google.maps.UnitSystem.METRIC<br />
+                google.maps.UnitSystem.IMPERIAL
+
             </div>
         </div>
         <div class="m_row">
             <div class="m_2">waypoints</div>
             <div class="m_8">
                 <p>Type:  Array</p>
-                Array of intermediate waypoints. Directions will be calculated from the origin to the destination by way of each waypoint in this array. The maximum allowed waypoints is 8, plus the origin, and destination. Maps API for Work customers are allowed 23 waypoints, plus the origin, and destination. Waypoints are not supported for transit directions. Optional.
+                数组,导航信息经过的点(可选)
             </div>
         </div>
         <div class="m_row">
             <div class="m_2">suppressMarkers</div>
             <div class="m_8">
                 <p>Type:  boolean</p>
-                Suppress the rendering of markers.
+                是否显示mark(可选)
             </div>
         </div>
         <div class="m_row">
             <div class="m_2">strokeColor</div>
             <div class="m_8">
                 <p>Type:  string</p>
-                The stroke color. All CSS3 colors are supported except for extended named colors.
+                导航颜色,支持rgb与css3(可选)
             </div>
         </div>
-        <div class="m_row">
-            <div class="m_2">success</div>
+        <div class="m_row" style="height:200px">
+            <div class="m_2" style="height:200px">success(routeArray)</div>
             <div class="m_8">
                 <p>type:function</p>
-                you could use this callback function
+                导航完毕后调用的接口入口(可选)
+                返回到达目的地几种线路数组,
+                每个数组内包含一下对象<br />
+                duration,&lt;string&gt;到达目的地的用时<br />
+                distance,&lt;string&gt;到达目的地的距离<br />
+                step,&lt;array&gt;具体的导航细节描述数组<br />
+                route&lt;object&gt;导航路有对象<br />
+                type:&lt;string&gt;该导航的交通方式<br />
+
             </div>
         </div>
 
 
     </div>
+    <div class="ye">
+        <p class="title">Method</p>
+        <div class="m_row">
+            <div class="m_2">getDirectionDisplay</div>
+            <div class="m_8">
+                <p>return Array;</p>
+                <p>绘画地图导航路线对象(线路地图类)</p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">getDirectionsService</div>
+            <div class="m_8">
+                <p>获取当前导航服务对象(文字类)</p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="m_row">
+            <div class="m_2">getDirectionResponse</div>
+            <div class="m_8">
+                <p>根据directionService返回的response对象</p>
+            </div>
+            <div class="clear"></div>
+        </div>
 
+    </div>
 </div>
 </body>
 </html>
-<script type="text/javascript" src="../googlemap.js"></script>
+<script type="text/javascript" src="../gmap.js"></script>
 <script type="text/javascript">
-    var googlemap = gmap();
     var elem = document.getElementById("warp");
-    googlemap.MovingMap({
-        target:elem
+    var mapname = new gmap({
+        target:elem,
+        center:"39.9388838,116.3974589",
+        zoom:12
     });
-    googlemap.onMapLoad = function(){
-        googlemap.setMarker([{
+    mapname.onMapLoad = function(){
+        mapname.setMarker([{
             position:"39.9388838,116.3974589"
         },{
             position:"39.1388838,116.3974589"
         }])
-        googlemap.Direction();
-        googlemap.setDirection({
+        mapname.direction({
             origin:"39.9388838,116.3974589",//required
             destination:"39.1388838,116.3974589",//required
             travelMode:"driving",//required
             suppressMarkers:true,
             strokeColor:"#194D7B",
             success:function(array){
+                array.each(function(n){
+                   //每个n是个对象
+                   /**
+                    * {
+                            duration:<string>,
+                            distance:<string>,
+                            step:<array>,
+                            route:<object>,
+                            type:<string>
+                    * }
+                    * **/
+                })
             }
         });
     }
