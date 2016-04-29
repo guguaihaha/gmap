@@ -396,6 +396,13 @@
             }
 
         },
+        this.resizeMap = function(){
+            setTimeout(function(){
+                var map = this.moveOptions.target;
+                google.maps.event.trigger(map,'resize');
+            },100);
+        },
+        //
         this.direction = function(options){
             var _this = this;
             if("google" in window){
@@ -544,6 +551,9 @@
         }
         this.getDirectionResponse = function(){
             return this.moveOptions.response;
+        }
+        this.removeDirection = function(){
+            this.moveOptions.directionsDisplay.setMap(null);
         }
         //
         this.setInfo = function(options){
@@ -927,6 +937,8 @@
                 }
             })
         }
+        //
+
         return this;
     }
    /*google map common methods*/
