@@ -3,6 +3,7 @@
  * zhangjinglin
  * http://www.wefashional.com/
  *
+ *
  */
 (function( window, undefined ) {
     var
@@ -42,7 +43,7 @@
     }
     //
     //
-   var _gmap = {
+    var _gmap = {
        fn:{
            cache:{},
            // The number of elements contained in the matched element set
@@ -149,6 +150,9 @@
    }
     function gmap(options){
         var that  = this;
+        if(!(this instanceof gmap)){
+            return new gmap(options);
+        }
         this.moveOptions = {
             markerArray:[],
             infoWindowArray:[],
